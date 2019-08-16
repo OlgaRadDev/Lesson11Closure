@@ -7,42 +7,41 @@
 // Это не все. Возьмите счетчик, который мы писали в классе и
 // добавьте ему возможность задавать начальное значение и шаг счетчика.
 
-(function () {
-
-    function sum (num) {
-        var temp = num;
-
-        sum = function () {
-            var addNum = arguments[0]? arguments[0]:0;
-            return temp+=addNum;
-        };
-        return sum();
+function addNum() {
+    var temp = 0;
+    return function (num) {
+        temp+=num;
+        return temp;
     }
-    console.log(sum(3));
-    console.log(sum(5));
-    console.log(sum(20));
-})();
+}
+ var sum = addNum();
+
+console.log(sum(3));
+console.log(sum(5));
+console.log(sum(20));
 
 
 function counter(start, step){
     var index = start;
 
     return function() {
-        var returnValue = index;
         index+=step;
-        return returnValue;
+        return index;
     }
 }
-var counterOne = counter(2,3);
-counterOne();
-counterOne();
-counterOne();
-console.log(counterOne());
 
+var counterOne = counter(0,2);
+
+console.log('------------------');
+console.log(counterOne());
+console.log(counterOne());
+console.log(counterOne());
+console.log(counterOne());
+console.log('------------------');
 var counterTwo = counter(5,4);
-counterTwo();
-counterTwo();
-counterTwo();
+console.log(counterTwo());
+console.log(counterTwo());
+console.log(counterTwo());
 console.log(counterTwo());
 
 
